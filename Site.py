@@ -109,7 +109,7 @@ x_teste = st.slider(
     min_value=1,    # Minimum value (float)
     max_value=10,   # Maximum value (float)
     value=7.5,       # Default starting value
-    step=0.5         # Increment by 0.5
+    step=0.5,         # Increment by 0.5
     format="%g"
 )
 
@@ -118,7 +118,7 @@ y_teste = st.slider(
     min_value=0,    # Minimum value (float)
     max_value=10,   # Maximum value (float)
     value=6,       # Default starting value
-    step=0.5         # Increment by 0.5
+    step=0.5,         # Increment by 0.5
     format="%g"
 )
 
