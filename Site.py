@@ -93,14 +93,27 @@ numbers_um = {
     "Antes de ontem": 1,
     "A três ou mais dias": 2
 }
-# numbers_um = [0,1,2]
-
 
 
 st.header("Calculador de RPE", divider="rainbow")
 st.subheader("Quanto se esforçar no treino de hoje?")
 
 
+x_teste = st.slider(
+    "2. Como você avalia o RPE do seu último treino? \n (Sendo muito leve = 1 e muito pesado = 10): ",
+    min_value=1.0,    # Minimum value (float)
+    max_value=10.0,   # Maximum value (float)
+    value=7.5,       # Default starting value
+    step=0.5         # Increment by 0.5
+    )
+
+y_teste = st.slider(
+    "3. Como você avalia a sua disposição hoje? \n (Sendo indisposto = 0, moderada = 5, e muito disposto = 10): ",
+    min_value=0.0,    # Minimum value (float)
+    max_value=10.0,   # Maximum value (float)
+    value=6.0,       # Default starting value
+    step=0.5         # Increment by 0.5
+    )
 
 # if button_clicked:
 st.markdown("Responda as perguntas abaixo:")
@@ -108,12 +121,7 @@ st.markdown("Responda as perguntas abaixo:")
 t_select = st.selectbox("1. Quando foi seu último treino?", numbers_um)
 t_teste = numbers_um[t_select]
 
-x_teste = st.slider("2. Como você avalia o RPE do seu último treino? \n (Em uma escala de 1 a 10, sendo 1 muito leve e 10 muito pesado): ", 1, 10, 1)
-    
-y_teste = st.slider("3. Como você avalia a sua disposição hoje? \n (Em uma escala de 0 a 10, sendo 0 indisposto, 5 moderado, e 10 muito disposto): ", 0, 10, 0)
-
-
 if st.button("Calcular RPE"):
     teste_inferencia = inferencia(x_teste, y_teste, t_teste)  # Inferencia
-    teste_centroide = np.round(centroide(z,teste_inferencia))  # Defuzzificação
+    teste_centroide = np.round(centroide(z,teste_inferencia)*2)/2  # Defuzzificação de 0.5 em 0.5
     st.success(f"O RPE sugerido para o treino de hoje é: **{teste_centroide}**")
