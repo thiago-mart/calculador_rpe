@@ -98,28 +98,34 @@ numbers_um = {
 st.header("Calculador de RPE", divider="rainbow")
 st.subheader("Quanto se esforçar no treino de hoje?")
 
+t_select = st.selectbox(
+    "Quando foi seu último treino?",
+    numbers_um
+)
+t_teste = numbers_um[t_select]
 
 x_teste = st.slider(
-    "2. Como você avalia o RPE do seu último treino? \n (Sendo muito leve = 1 e muito pesado = 10): ",
-    min_value=1.0,    # Minimum value (float)
-    max_value=10.0,   # Maximum value (float)
+    "Como você avalia o RPE do seu último treino? (Sendo muito leve = 1 e muito pesado = 10): ",
+    min_value=1,    # Minimum value (float)
+    max_value=10,   # Maximum value (float)
     value=7.5,       # Default starting value
     step=0.5         # Increment by 0.5
-    )
+    format="%g"
+)
 
 y_teste = st.slider(
-    "3. Como você avalia a sua disposição hoje? \n (Sendo indisposto = 0, moderada = 5, e muito disposto = 10): ",
-    min_value=0.0,    # Minimum value (float)
-    max_value=10.0,   # Maximum value (float)
-    value=6.0,       # Default starting value
+    "Como você avalia a sua disposição hoje? (Sendo indisposto = 0, moderada = 5, e muito disposto = 10): ",
+    min_value=0,    # Minimum value (float)
+    max_value=10,   # Maximum value (float)
+    value=6,       # Default starting value
     step=0.5         # Increment by 0.5
-    )
+    format="%g"
+)
 
 # if button_clicked:
 st.markdown("Responda as perguntas abaixo:")
 
-t_select = st.selectbox("1. Quando foi seu último treino?", numbers_um)
-t_teste = numbers_um[t_select]
+
 
 if st.button("Calcular RPE"):
     teste_inferencia = inferencia(x_teste, y_teste, t_teste)  # Inferencia
