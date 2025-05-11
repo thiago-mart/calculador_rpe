@@ -1,7 +1,4 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 import math
 
