@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 import math
 
-
 ## Função de pertinência triangular
 def T(a,m,n,b=None):
     if b is None:
@@ -43,6 +42,7 @@ def inferencia(x_value, y_value, t_value):
             w = t_norm(A(x_value),B(y_value))
             infe = s_norm(infe,t_norm(w,BaseRegras[i][j][t_value](z)))
     return infe
+
 
 ### Definindo as variáveis
 
@@ -88,43 +88,50 @@ BaseRegras = [
 conjunto_rpe_ant = [A1,A2,A3,A4,A5]
 conjunto_disposicao = [B1,B2,B3,B4,B5]
 
+
+### Site
+
+## Números para os dias
 numbers_um = {
     "Ontem": 0,
     "Antes de ontem": 1,
-    "A três ou mais dias": 2
+    "Três ou mais dias": 2
 }
 
+st.header("Calculador de RPE", divider="rainbow")  # Título
+st.subheader("Quanto se esforçar no treino de hoje?")  # Subtítulo
 
-st.header("Calculador de RPE", divider="rainbow")
-st.subheader("Quanto se esforçar no treino de hoje?")
+st.markdown("Responda as perguntas abaixo para saber!")  # Questionário
 
-st.markdown("Responda as perguntas abaixo para saber!")
-
-t_select = st.selectbox(
+## Pergunta para o tempo de treino
+t_select = st.selectbox(            
     "Quando foi seu último treino?",
     numbers_um
 )
-t_teste = numbers_um[t_select]
+t_teste = numbers_um[t_select]  # Transformando resposta em número
 
+## Pergunta para o RPE anterior
 x_teste = st.slider(
-    "Como você avalia o RPE do seu último treino? (Sendo muito leve = 1 e muito pesado = 10): ",
-    min_value=1.0,    # Minimum value (float)
-    max_value=10.0,   # Maximum value (float)
-    value=7.5,       # Default starting value
-    step=0.5,         # Increment by 0.5
-    format="%g"
+    "Como você avalia o RPE de seu último treino? (Sendo: muito leve = 1, e muito pesado = 10): ",
+    min_value=1.0,    # Valor mínimo
+    max_value=10.0,   # Valor máximo
+    value=7.5,        # Valor inicial automático
+    step=0.5,         # Incremento em 0.5
+    format="%g"       # Correção das casas decimais
 )
 
+## Pergunta para a disposição
 y_teste = st.slider(
-    "Como você avalia a sua disposição hoje? (Sendo indisposto = 0, moderada = 5, e muito disposto = 10): ",
-    min_value=0.0,    # Minimum value (float)
-    max_value=10.0,   # Maximum value (float)
-    value=6.0,       # Default starting value
-    step=0.5,         # Increment by 0.5
-    format="%g"
+    "Como você avalia a sua disposição hoje? (Sendo: sem disposição = 0, moderada = 5, e alta = 10): ",
+    min_value=0.0,    # Valor mínimo
+    max_value=10.0,   # Valor máximo
+    value=6.5,        # Valor inicial automático
+    step=0.5,         # Incremento em 0.5
+    format="%g"       # Correção das casas decimais
 )
 
-if st.button("Calcular RPE"):
-    teste_inferencia = inferencia(x_teste, y_teste, t_teste)  # Inferencia
+## Cálculo do RPE
+if st.button("Descobrir RPE"):
+    teste_inferencia = inferencia(x_teste, y_teste, t_teste)  # Inferência
     teste_centroide = np.round(centroide(z,teste_inferencia)*2)/2  # Defuzzificação de 0.5 em 0.5
-    st.success(f"O RPE sugerido para o treino de hoje é: **{teste_centroide}**")
+    st.success(f"O RPE sugerido para o treino de hoje é: **{teste_centroide}**")  # Resultado
