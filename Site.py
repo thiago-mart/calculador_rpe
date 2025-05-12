@@ -49,32 +49,29 @@ def inferencia(x_value, y_value, t_value):
 t_norm = t_min  # t-norma utilizada
 s_norm = s_max  # s-norma utilizada
 size = 501  # Quantidade de pontos na discretização
-line_width = 1  # Espessura da curva no gráfico
 
 ## Criando domínio e imagem
-dominio_min = 0
-dominio_max = 10
+x = np.linspace(1, 10, size)  # Definição do eixo x; Usado para RPE (conjunto A)
+y = np.linspace(0, 10, size)  # Definição do eixo y; Usado para disposição (conjunto b)
+z = np.linspace(0, 10, size)  # Sla pra que serve isso, é usado no gráfico do centroide
 
-x = np.linspace(dominio_min, dominio_max, size)  # Definição do eixo x; Usado para RPE (conjunto A)
-y = np.linspace(dominio_min, dominio_max, size)  # Definição do eixo y; Usado para disposição (conjunto b)
-z = np.linspace(dominio_min, dominio_max, size)  # Sla pra que serve isso, é usado no gráfico do centroide
 
-dominio_tick = np.arange(dominio_min, dominio_max+1, 1)  # Arruma o domínio no Gráfico
-imagem_tick = np.arange(0, 1.1, 0.2)  # Arruma a imagem no Gráfico
+### Sistema de Base de Regras
 
 ## Conjuntos fuzzy para RPE
-A1 = T(0,1,3,5.5)  # Muito Leve (muito baixo)
-A2 = T(4,5,5.5,7.5)  # Leve (baixo)
-A3 = T(5.5,7,8.5)  # Moderado
-A4 = T(7.5,8.5,10)  # Pesado (alto)
-A5 = T(9,9.5,10,11)  # Muito Pesado (muito alto)
+A1_ant = T(0,1,4,5.5)      # Muito baixo
+A1 = T(4,5,5.5)         # Muito baixo
+A2 = T(4.5,5.5,6,7.5)   # Baixo
+A3 = T(5.5,7,8.5)       # Moderado
+A4 = T(7.5,8.5,10)      # Pesado alto
+A5 = T(9,9.5,10,11)     # Muito alto
 
 ## Conjuntos fuzzy para Disposição
-B1 = T(-1,0,3,4)  # Indisposto
-B2 = T(2,3,4,5)  # Pouco Disposto
-B3 = T(3.5,4.5,5.5,6.5)  # Moderadamente Disposto
-B4 = T(5,6,7,8)  # Disposto
-B5 = T(6,8,9,11)  # Muito Disposto
+B1 = T(-1,0,3,4)             # Indisposto
+B2 = T(2,3,4,5)              # Pouco Disposto
+B3 = T(3.5,4.5,5.5,6.5)      # Moderadamente Disposto
+B4 = T(5,6,7,8)              # Disposto
+B5 = T(6,8,9,11)             # Muito Disposto
 
 ## Criando a Base de Regras 
 BaseRegras = [
@@ -85,7 +82,7 @@ BaseRegras = [
     [[A1, A1, A1], [A1, A1, A2], [A1, A2, A2], [A2, A2, A3], [A2, A3, A4]]
 ]
 
-conjunto_rpe_ant = [A1,A2,A3,A4,A5]
+conjunto_rpe_ant = [A1_ant,A2,A3,A4,A5]
 conjunto_disposicao = [B1,B2,B3,B4,B5]
 
 
