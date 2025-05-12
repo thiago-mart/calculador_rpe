@@ -71,7 +71,7 @@ B1 = T(-1,0,3,4)             # Indisposto
 B2 = T(2,3,4,5)              # Pouco Disposto
 B3 = T(3.5,4.5,5.5,6.5)      # Moderadamente Disposto
 B4 = T(5,6,7,8)              # Disposto
-B5 = T(6,8,9,11)             # Muito Disposto
+B5 = T(6,8,10,11)             # Muito Disposto
 
 ## Criando a Base de Regras 
 BaseRegras = [
