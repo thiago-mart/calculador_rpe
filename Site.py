@@ -59,9 +59,9 @@ z = np.linspace(0, 10, size)  # Sla pra que serve isso, é usado no gráfico do 
 ### Sistema de Base de Regras
 
 ## Conjuntos fuzzy para RPE
-A1_ant = T(0,1,4,5.5)      # Muito baixo
-A1 = T(4,5,5.5)         # Muito baixo
-A2 = T(4.5,5.5,6,7.5)   # Baixo
+A1_ant = T(0,1,3,5.5)   # Muito baixo (Anterior)
+A1 = T(2.5,3,4,5.5)     # Muito baixo (Novo)
+A2 = T(4,5,5.5,7.5)     # Baixo
 A3 = T(5.5,7,8.5)       # Moderado
 A4 = T(7.5,8.5,10)      # Pesado alto
 A5 = T(9,9.5,10,11)     # Muito alto
@@ -71,7 +71,7 @@ B1 = T(-1,0,3,4)             # Indisposto
 B2 = T(2,3,4,5)              # Pouco Disposto
 B3 = T(3.5,4.5,5.5,6.5)      # Moderadamente Disposto
 B4 = T(5,6,7,8)              # Disposto
-B5 = T(6,8,10,11)             # Muito Disposto
+B5 = T(6,8,10,11)            # Muito Disposto
 
 ## Criando a Base de Regras 
 BaseRegras = [
