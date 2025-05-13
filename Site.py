@@ -109,7 +109,7 @@ t_teste = numbers_um[t_select]  # Transformando resposta em número
 
 ## Pergunta para o RPE anterior
 x_teste = st.slider(
-    "Como você avalia o RPE de seu último treino? (Sendo: muito leve = 1, e muito pesado = 10): ",
+    "Como você avalia o RPE de seu último treino? (Sendo: muito leve = 1, e muito pesado = 10) ",
     min_value=1.0,    # Valor mínimo
     max_value=10.0,   # Valor máximo
     value=7.5,        # Valor inicial automático
@@ -119,7 +119,7 @@ x_teste = st.slider(
 
 ## Pergunta para a disposição
 y_teste = st.slider(
-    "Como você avalia a sua disposição hoje? (Sendo: sem disposição = 0, moderada = 5, e alta = 10): ",
+    "Como você avalia a sua disposição hoje? (Sendo: sem disposição = 0, moderada = 5, e alta = 10) ",
     min_value=0.0,    # Valor mínimo
     max_value=10.0,   # Valor máximo
     value=6.5,        # Valor inicial automático
